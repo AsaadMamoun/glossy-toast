@@ -1,0 +1,95 @@
+/* glossy-toast.css */
+
+/* Container styling for positioning glossy toasts */
+.glossy-toast-container {
+    position: fixed;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    pointer-events: none;
+}
+
+/* Position variants */
+.glossy-toast-container.bottom-right { bottom: 20px; right: 20px; align-items: flex-end; }
+.glossy-toast-container.bottom-left { bottom: 20px; left: 20px; align-items: flex-start; }
+.glossy-toast-container.top-right { top: 20px; right: 20px; align-items: flex-end; }
+.glossy-toast-container.top-left { top: 20px; left: 20px; align-items: flex-start; }
+.glossy-toast-container.bottom-center { bottom: 20px; left: 50%; transform: translateX(-50%); align-items: center; }
+.glossy-toast-container.top-center { top: 20px; left: 50%; transform: translateX(-50%); align-items: center; }
+
+/* Base glossy toast styling */
+.glossy-toast {
+    background: linear-gradient(145deg, #444, #222);
+    color: #fff;
+    padding: 14px 22px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.1), inset 0 -1px 1px rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 14px;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    max-width: 320px;
+    position: relative;
+    overflow: hidden;
+    pointer-events: auto;
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    width: auto;
+    backdrop-filter: blur(4px);
+}
+
+.glossy-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Shine animation effect */
+.glossy-toast::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.08) 20%, rgba(255, 255, 255, 0.2) 40%, transparent 70%);
+    transform: skewX(-30deg);
+    animation: shine 3s infinite;
+    pointer-events: none;
+}
+
+/* Type variants */
+.glossy-toast.error {
+    background: linear-gradient(145deg, #a74040, #3a0d0d);
+    border: 1px solid rgba(255, 100, 100, 0.3);
+    color: #fff;
+}
+
+.glossy-toast.success {
+    background: linear-gradient(145deg, #1f7a38, #0d3a1e);
+    border: 1px solid rgba(100, 255, 100, 0.3);
+    color: #fff;
+}
+
+/* Width variants */
+.glossy-toast.normal { max-width: 320px; }
+.glossy-toast.wide { max-width: 480px; }
+.glossy-toast.extra-wide { max-width: 640px; }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .glossy-toast.normal,
+    .glossy-toast.wide,
+    .glossy-toast.extra-wide {
+        max-width: 90vw;
+    }
+}
+
+/* Shine animation keyframes */
+@keyframes shine {
+    from { left: -60%; }
+    to { left: 100%; }
+}

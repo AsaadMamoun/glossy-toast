@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glossy Toast Demo</title>
+    <link rel="stylesheet" href="glossy-toast.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background: #444;
+            color: white;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #666;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        .section {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Glossy Toast Demo</h1>
+
+    <div class="section">
+        <h2>Toast Types</h2>
+        <div class="button-group">
+            <button onclick="ShowGlossyToast('Info message')">Info</button>
+            <button onclick="ShowGlossyToast('Success message', { type: ToastType.Success })">Success</button>
+            <button onclick="ShowGlossyToast('Error message', { type: ToastType.Error })">Error</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Positions</h2>
+        <div class="button-group">
+            <button onclick="ShowGlossyToast('Top Left', { position: ToastPosition.TopLeft })">Top Left</button>
+            <button onclick="ShowGlossyToast('Top Center', { position: ToastPosition.TopCenter })">Top Center</button>
+            <button onclick="ShowGlossyToast('Top Right', { position: ToastPosition.TopRight })">Top Right</button>
+            <button onclick="ShowGlossyToast('Bottom Left', { position: ToastPosition.BottomLeft })">Bottom Left</button>
+            <button onclick="ShowGlossyToast('Bottom Center', { position: ToastPosition.BottomCenter })">Bottom Center</button>
+            <button onclick="ShowGlossyToast('Bottom Right', { position: ToastPosition.BottomRight })">Bottom Right</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Widths</h2>
+        <div class="button-group">
+            <button onclick="ShowGlossyToast('Normal width message', { width: ToastWidth.Normal })">Normal</button>
+            <button onclick="ShowGlossyToast('This is a wider message to demonstrate the wide width', { width: ToastWidth.Wide })">Wide</button>
+            <button onclick="ShowGlossyToast('This is an even longer message to show the extra-wide width option', { width: ToastWidth.ExtraWide })">Extra Wide</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Durations</h2>
+        <div class="button-group">
+            <button onclick="ShowGlossyToast('2 seconds', { duration: 2000 })">2s</button>
+            <button onclick="ShowGlossyToast('5 seconds (default)', { duration: 5000 })">5s</button>
+            <button onclick="ShowGlossyToast('10 seconds', { duration: 10000 })">10s</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Interactive Features</h2>
+        <div class="button-group">
+            <button onclick="ShowGlossyToast('Hover me to pause the timer! Try clicking me too!', { duration: 5000 })">
+                Hover/Click Demo
+            </button>
+        </div>
+    </div>
+
+    <script type="module">
+        import { ShowGlossyToast, ToastPosition, ToastType, ToastWidth } from './glossy-toast.js';
+        
+        // Make these available globally for the onclick handlers
+        window.ShowGlossyToast = ShowGlossyToast;
+        window.ToastPosition = ToastPosition;
+        window.ToastType = ToastType;
+        window.ToastWidth = ToastWidth;
+    </script>
+</body>
+</html>
